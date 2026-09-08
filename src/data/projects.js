@@ -35,11 +35,11 @@ export const galleryProjects = [
     reverse: false,
     image: withBase('/assets/images/Rendered_01.jpg'),
     imageAlt: 'Renovation of an 8 sqm. Bedroom',
-    title: 'Renovation of an 8 sq.m. Bedroom',
+    title: 'Renovation of an 8 sqm Bedroom',
     location: 'Location: Santa Barbara, Victoria, Tarlac',
     description:
       'The design focuses on both function and style, creating a simple yet cozy bedroom. It makes the most of the small space while keeping it bright, comfortable, and pleasing to the eye.',
-    galleryTitle: 'Renovation of an 8 sq.m. Bedroom',
+    galleryTitle: 'Renovation of an 8 sqm Bedroom',
     galleryImages: [
       withBase('/assets/images/Rendered_03.jpg'),
       withBase('/assets/images/Rendered_02.jpg'),
@@ -52,11 +52,11 @@ export const galleryProjects = [
     reverse: true,
     image: withBase('/assets/images/Rendered_06.jpg'),
     imageAlt: 'Renovation of an 17 sqm. Bedroom',
-    title: 'Renovation of an 17 sq.m. Bedroom',
+    title: 'Renovation of an 17 sqm Bedroom',
     location: 'Location: Dinorado St., Palayan, Payatas A, Quezon City',
     description:
       'The design highlights comfort and function while keeping a clean and modern look. It uses space wisely to create a relaxing and stylish bedroom that feels warm and inviting.',
-    galleryTitle: 'Renovation of an 17 sq.m. Bedroom',
+    galleryTitle: 'Renovation of an 17 sqm Bedroom',
     galleryImages: [
       withBase('/assets/images/Rendered_01 (1).jpg'),
       withBase('/assets/images/Rendered_02 (1).jpg'),
