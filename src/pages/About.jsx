@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navigation from '../components/Navigation.jsx'
 import Footer from '../components/Footer.jsx'
+import SEO from '../components/SEO.jsx'
 import styles from './About.module.css'
 import { withBase } from '../utils/assetPath.js'
 
@@ -33,6 +34,11 @@ export default function About() {
 
   return (
     <div className={styles.page}>
+      <SEO
+        title="About Angeline Merwin Cainglet | AM Interior"
+        description="Meet Angeline Merwin Cainglet, an Architecture student and interior designer based in Tarlac creating tailor-made residential and commercial spaces."
+        path="/about"
+      />
       <Navigation />
 
       <div className={styles.pageWrapper}>

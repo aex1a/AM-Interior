@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Navigation from '../components/Navigation.jsx'
 import Footer from '../components/Footer.jsx'
+import SEO from '../components/SEO.jsx'
+import { supabase, isSupabaseConfigured } from '../lib/supabaseClient.js'
 import styles from './Contact.module.css'
 import { withBase } from '../utils/assetPath.js'
 
@@ -38,13 +40,25 @@ export default function Contact() {
     setSubmitting(true)
 
     const formData = new FormData(form)
+    const payload = {
+      first_name: formData.get('first_name'),
+      last_name: formData.get('last_name'),
+      contact: formData.get('contact'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    }
 
     try {
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors',
-      })
+      // Primary: store the inquiry in Supabase so it shows up in the Admin
+      // dashboard's Messages inbox.
+      if (isSupabaseConfigured) {
+        const { error } = await supabase.from('messages').insert(payload)
+        if (error) throw error
+      }
+
+      // Secondary: keep firing the existing Google Apps Script so the owner
+      // still gets an email notification (fire-and-forget, best effort).
+      fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' }).catch(() => {})
 
       setStatus({ text: 'Your Message has been sent! Thank you for contacting us.', type: 'success' })
       form.reset()
@@ -58,6 +72,11 @@ export default function Contact() {
 
   return (
     <div className={styles.page}>
+      <SEO
+        title="Contact AM Interior | Interior Design Inquiries in Tarlac"
+        description="Get in touch with AM Interior for residential and commercial interior design inquiries. We respond within 48 hours."
+        path="/contact"
+      />
       <Navigation />
 
       <main className={styles.mainContent}>

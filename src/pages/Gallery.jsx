@@ -1,15 +1,23 @@
 import { useEffect, useRef, useState } from 'react'
 import Navigation from '../components/Navigation.jsx'
 import Footer from '../components/Footer.jsx'
-import { galleryProjects, beforeAfterProjects } from '../data/projects.js'
+import SEO from '../components/SEO.jsx'
+import { useProjects } from '../hooks/useProjects.js'
 import styles from './Gallery.module.css'
 
 export default function Gallery() {
+  const { galleryProjects, beforeAfterProjects, loading } = useProjects()
   const [activeProjectId, setActiveProjectId] = useState(null)
-  const [activeBna, setActiveBna] = useState(beforeAfterProjects[0])
   const [sliderPercent, setSliderPercent] = useState(50)
   const [labelBeforeOpacity, setLabelBeforeOpacity] = useState(1)
   const [labelAfterOpacity, setLabelAfterOpacity] = useState(1)
+  const [activeBna, setActiveBna] = useState(null)
+
+  useEffect(() => {
+    if (!activeBna && beforeAfterProjects.length) {
+      setActiveBna(beforeAfterProjects[0])
+    }
+  }, [beforeAfterProjects, activeBna])
 
   const sliderRef = useRef(null)
   const draggingRef = useRef(false)
@@ -78,6 +86,11 @@ export default function Gallery() {
   if (activeProject) {
     return (
       <div className={styles.page}>
+        <SEO
+          title={`${activeProject.title} | AM Interior`}
+          description={activeProject.description || `${activeProject.title} — ${activeProject.location}`}
+          path={`/gallery${activeProject.slug ? `#${activeProject.slug}` : ''}`}
+        />
         <Navigation />
 
         <div className={styles.projectGalleryPage + ' ' + styles.active}>
@@ -101,6 +114,11 @@ export default function Gallery() {
 
   return (
     <div className={styles.page}>
+      <SEO
+        title="Interior Design Projects & Portfolio | AM Interior"
+        description="Browse AM Interior's portfolio of residential and commercial interior design projects across the Philippines, plus before-and-after transformations."
+        path="/gallery"
+      />
       <Navigation />
 
       <section id="home" className={styles.heroSection} aria-label="Hero Section: 2025 Projects Portfolio">
@@ -150,6 +168,7 @@ export default function Gallery() {
           <p className={styles.bnaTitle}>BEFORE AND AFTER</p>
           <div className={styles.bnaDivider}></div>
 
+          {activeBna && (
           <div className={styles.bnaWrapper}>
             <nav className={styles.bnaNav} aria-label="Before and After Project Selection">
               {beforeAfterProjects.map((project) => (
@@ -199,6 +218,7 @@ export default function Gallery() {
               </div>
             </div>
           </div>
+          )}
         </section>
       </div>
 
