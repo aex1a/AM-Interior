@@ -333,3 +333,55 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filterGroup label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+}
+
+.filterGroup input[type='date'] {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.filterPills {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.filterPill {
+  background: #f2f0ec;
+  border: 1px solid transparent;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.filterPill:hover {
+  background: #e9e5dd;
+}
+
+.filterPillActive {
+  background: #1c1b19;
+  color: #fff;
+}
