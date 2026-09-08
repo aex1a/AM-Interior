@@ -6,8 +6,6 @@ import styles from './Home.module.css'
 import { withBase } from '../utils/assetPath.js'
 
 
-const HOME_CREDITS = [{ name: 'NOOL', href: 'https://www.facebook.com/alexia28nool/' }]
-
 export default function Home() {
   return (
     <div className={styles.page}>
@@ -67,7 +65,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Footer variant="home" credits={HOME_CREDITS} />
+      <Footer />
     </div>
   )
 }
