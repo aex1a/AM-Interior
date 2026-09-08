@@ -11,6 +11,27 @@
   padding-top: 10px;
   padding-bottom: 15px;
   border-bottom: 0.1px solid black;
+  transition: padding 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+    box-shadow 0.5s ease, background-color 0.5s ease;
+}
+
+/* Compact wordmark that only appears once the header has collapsed.
+   It sits absolutely in the top-left, independent of the flex flow, and
+   crossfades in as the big title folds away below. */
+.compactBrand {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  font-family: 'Schoonheid', sans-serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+  white-space: nowrap;
 }
 
 .navigation h1 {
@@ -45,6 +66,7 @@
   flex-wrap: wrap;
   text-decoration: none;
   font-family: 'Avenir Mid', sans-serif;
+  transition: gap 0.5s cubic-bezier(0.65, 0, 0.35, 1), padding 0.5s ease;
 }
 
 .navList li {
@@ -81,6 +103,7 @@
   border: 0.5px solid #000;
   width: 100%;
   margin: 10px auto;
+  transition: opacity 0.35s ease, margin 0.5s ease;
 }
 
 .social {
@@ -90,6 +113,7 @@
   gap: 15px;
   top: 90px;
   left: 10%;
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .social img {
@@ -103,31 +127,58 @@
   opacity: 0.7;
 }
 
-/* Gallery page uses a slightly different nav type scale in the original site */
-.galleryVariant {
-  padding-bottom: 0;
+/* Brand block (big title) folds away like a closing curtain — height and
+   opacity collapse together rather than the text just scaling down. */
+.brandBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 260px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.35s ease;
 }
 
-.galleryVariant .navList {
-  padding: 6px 0;
-  font-family: 'Schoonheid', sans-serif;
+/* ---- Compact (scrolled) state ---- */
+
+.navigation.compact {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  background-color: #eae7db;
 }
 
-.galleryVariant .navList li {
-  font-size: 1rem;
+.navigation.compact .brandBlock {
+  max-height: 0;
+  opacity: 0;
 }
 
-.galleryVariant h2 {
-  font-size: 1rem;
-  font-weight: 900;
-  margin-bottom: 27.5px;
-  position: relative;
-  top: -3px;
+.navigation.compact .navList {
+  gap: 60px;
+  padding: 4px 0;
+}
+
+.navigation.compact .compactBrand {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  pointer-events: auto;
+}
+
+.navigation.compact .social {
+  opacity: 0;
+  transform: translateX(-12px);
+  pointer-events: none;
 }
 
 @media screen and (max-width: 1250px) {
-  .galleryVariant .navList {
+  .navList {
     gap: 80px;
+  }
+
+  .navigation.compact .navList {
+    gap: 30px;
   }
 }
 
@@ -154,6 +205,15 @@
     justify-content: center;
     padding: 10px 0;
     width: 100%;
+  }
+
+  .navigation.compact .social {
+    display: none;
+  }
+
+  .compactBrand {
+    left: 16px;
+    font-size: 13px;
   }
 }
 
@@ -185,5 +245,10 @@
 
   .social {
     display: none;
+  }
+
+  .compactBrand {
+    font-size: 11px;
+    letter-spacing: 2px;
   }
 }

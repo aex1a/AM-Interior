@@ -78,7 +78,7 @@ export default function Gallery() {
   if (activeProject) {
     return (
       <div className={styles.page}>
-        <Navigation variant="gallery" />
+        <Navigation />
 
         <div className={styles.projectGalleryPage + ' ' + styles.active}>
           <div className={styles.galleryHeader}>
@@ -101,7 +101,7 @@ export default function Gallery() {
 
   return (
     <div className={styles.page}>
-      <Navigation variant="gallery" />
+      <Navigation />
 
       <section id="home" className={styles.heroSection} aria-label="Hero Section: 2025 Projects Portfolio">
         <div className={styles.heroContentWrapper}>
