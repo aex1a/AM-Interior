@@ -48,8 +48,7 @@ export default function Dashboard() {
 
       <div className={styles.card}>
         <p>
-          Manage your project portfolio and inquiries from here. Changes appear on the live
-          site immediately — no code or redeploy needed.
+          Manage your project portfolio and inquiries from here.
         </p>
         <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
           <Link to="/admin/projects" className={styles.btnPrimary} style={{ textDecoration: 'none' }}>
