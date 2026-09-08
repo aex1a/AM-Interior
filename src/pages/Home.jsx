@@ -3,6 +3,8 @@ import Navigation from '../components/Navigation.jsx'
 import Footer from '../components/Footer.jsx'
 import { featuredProjects, ongoingProjects } from '../data/projects.js'
 import styles from './Home.module.css'
+import { withBase } from '../utils/assetPath.js'
+
 
 const HOME_CREDITS = [{ name: 'NOOL', href: 'https://www.facebook.com/alexia28nool/' }]
 
@@ -12,7 +14,7 @@ export default function Home() {
       <Navigation />
 
       <span className={styles.caption}>
-        <img src="/assets/images/blurcap.png" alt="background" className={styles.cimg} />
+        <img src={withBase("/assets/images/blurcap.png")} alt="background" className={styles.cimg} />
         <p>
           My customized approach blends creativity and vision to create thoughtfully designed
           spaces that embody our clients personalities and lifestyles.

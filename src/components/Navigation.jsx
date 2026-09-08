@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './Navigation.module.css'
+import { withBase } from '../utils/assetPath.js'
+
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -27,13 +29,13 @@ export default function Navigation({ variant = 'default' }) {
 
       <div className={styles.social}>
         <a href="https://www.instagram.com/merwin_yin/" target="_blank" rel="noreferrer">
-          <img src="/assets/images/instagram.png" alt="Instagram" />
+          <img src={withBase("/assets/images/instagram.png")} alt="Instagram" />
         </a>
         <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
-          <img src="/assets/images/linkedin.png" alt="LinkedIn" />
+          <img src={withBase("/assets/images/linkedin.png")} alt="LinkedIn" />
         </a>
         <a href="https://www.facebook.com/angelinemerwin.cainglet.1" target="_blank" rel="noreferrer">
-          <img src="/assets/images/facebook.png" alt="Facebook" />
+          <img src={withBase("/assets/images/facebook.png")} alt="Facebook" />
         </a>
       </div>
 

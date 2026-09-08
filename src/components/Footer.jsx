@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
+import { withBase } from '../utils/assetPath.js'
+
 
 const DEFAULT_CREDITS = [
   { name: 'BUENAOBRA', href: 'https://www.facebook.com/r.kiveeele' },
@@ -31,19 +33,19 @@ export default function Footer({
           <div className={styles.connectLine}></div>
           <div className={styles.fSocial}>
             <a href="https://www.instagram.com/merwin_yin/" target="_blank" rel="noreferrer">
-              <img src="/assets/images/instagram.png" alt="Instagram" />
+              <img src={withBase("/assets/images/instagram.png")} alt="Instagram" />
             </a>
             <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
-              <img src="/assets/images/linkedin.png" alt="LinkedIn" />
+              <img src={withBase("/assets/images/linkedin.png")} alt="LinkedIn" />
             </a>
             <a href="https://www.facebook.com/angelinemerwin.cainglet.1" target="_blank" rel="noreferrer">
-              <img src="/assets/images/facebook.png" alt="Facebook" />
+              <img src={withBase("/assets/images/facebook.png")} alt="Facebook" />
             </a>
           </div>
         </div>
 
         <div className={`${styles.footerCol} ${styles.fCenter}`}>
-          <img src="/assets/images/logo.png" alt="logo" className={styles.fLogo} />
+          <img src={withBase("/assets/images/logo.png")} alt="logo" className={styles.fLogo} />
         </div>
 
         <div className={`${styles.footerCol} ${styles.fRight}`}>

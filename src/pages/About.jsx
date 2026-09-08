@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import Navigation from '../components/Navigation.jsx'
 import Footer from '../components/Footer.jsx'
 import styles from './About.module.css'
+import { withBase } from '../utils/assetPath.js'
+
 
 const ABOUT_TERMS =
   'TERMS AND CONDITIONS\n\n1. This website is a student portfolio project.\n2. All designs and images remain the intellectual property of Angeline Merwin Cainglet.\n3. @WEBDEV 2025'
@@ -45,7 +47,7 @@ export default function About() {
 
         <section className={styles.heroBottom}>
           <div className={styles.heroImage}>
-            <img src="/assets/images/angel.png" alt="Angeline Merwin Cainglet" />
+            <img src={withBase("/assets/images/angel.png")} alt="Angeline Merwin Cainglet" />
           </div>
 
           <div className={styles.story}>

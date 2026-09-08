@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Navigation from '../components/Navigation.jsx'
 import Footer from '../components/Footer.jsx'
 import styles from './Contact.module.css'
+import { withBase } from '../utils/assetPath.js'
+
 
 const SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbydJ0Cb-ImecVdVZEKP19sTKMZ_f_c4YH04tZh_g8uxWGSjc2j1w7Ntc_RhseWmWZHTpw/exec'
@@ -151,7 +153,7 @@ export default function Contact() {
           </div>
 
           <div className={styles.contactImageContainer}>
-            <img src="/assets/images/contactimg.png" alt="Counter" />
+            <img src={withBase("/assets/images/contactimg.png")} alt="Counter" />
           </div>
         </section>
       </main>
