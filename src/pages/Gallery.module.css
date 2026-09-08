@@ -25,7 +25,7 @@
 .page :global(h1),
 .page :global(h2),
 .page :global(h3) {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Schoonheid', serif;
   color: var(--text-color);
 }
 

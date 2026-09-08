@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: 'Contact', to: '/contact' },
 ]
 
-// Header starts compressing once you've scrolled past this many pixels.
+// header starts shrink -----------
 const COMPACT_THRESHOLD = 80
 
 export default function Navigation() {
@@ -38,8 +38,7 @@ export default function Navigation() {
 
   return (
     <header className={`${styles.navigation} ${compact ? styles.compact : ''}`}>
-      {/* Compact wordmark: hidden/collapsed by default, fades and slides in
-          once the big title below has folded away on scroll. */}
+      
       <span className={styles.compactBrand} aria-hidden={!compact}>
         Angeline Merwin
       </span>
@@ -64,8 +63,7 @@ export default function Navigation() {
         </a>
       </div>
 
-      {/* Big title block: folds away (max-height + opacity) as you scroll,
-          rather than just shrinking in place. */}
+      {/*name*/}
       <div className={styles.brandBlock}>
         <hr />
         <h1>ANGELINE MERWIN</h1>

@@ -22,9 +22,6 @@
   font-weight: 700;
 }
 
-/* 'Avenir LT Std' is used as a general body font in About/Contact. There is no
-   dedicated "book"/regular weight file in this asset pack, so we point it at the
-   medium weight, which is the closest match already present in assets/fonts. */
 @font-face {
   font-family: 'Avenir LT Std';
   src: url('/assets/fonts/avenirltstd-medium-webfont.woff2') format('woff2'),
@@ -33,9 +30,7 @@
   font-style: normal;
 }
 
-/* 'Schoonheid' is referenced across Navigation, Home, Gallery, About, and Contact,
-   but had no @font-face rule, so it was silently falling back to a generic serif/
-   sans-serif font. The .otf file is already in assets/fonts — this loads it. */
+
 @font-face {
   font-family: 'Schoonheid';
   src: url('/assets/fonts/Schoonheid.otf') format('opentype');
