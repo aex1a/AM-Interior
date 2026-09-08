@@ -1,10 +1,5 @@
-
--- Needed for gen_random_uuid()
 create extension if not exists "pgcrypto";
 
--- -------------------------------------------------------------------------
--- 1. PROJECTS
--- -------------------------------------------------------------------------
 create table if not exists projects (
   id           uuid primary key default gen_random_uuid(),
   slug         text unique not null,
@@ -13,7 +8,7 @@ create table if not exists projects (
   location     text default '',
   year         int,
   category     text default 'Residential',
-  cover_image  text,               -- URL of the main/cover image
+  cover_image  text,
   featured     boolean default false,
   status       text default 'published' check (status in ('draft', 'published')),
   sort_order   int default 0,
@@ -21,9 +16,6 @@ create table if not exists projects (
   updated_at   timestamptz default now()
 );
 
--- -------------------------------------------------------------------------
--- 2. PROJECT_IMAGES  (gallery + before/after images per project)
--- -------------------------------------------------------------------------
 create table if not exists project_images (
   id           uuid primary key default gen_random_uuid(),
   project_id   uuid not null references projects(id) on delete cascade,
@@ -34,9 +26,6 @@ create table if not exists project_images (
   created_at   timestamptz default now()
 );
 
--- -------------------------------------------------------------------------
--- 3. MESSAGES  (contact form submissions)
--- -------------------------------------------------------------------------
 create table if not exists messages (
   id           uuid primary key default gen_random_uuid(),
   first_name   text not null,
@@ -48,9 +37,6 @@ create table if not exists messages (
   created_at   timestamptz default now()
 );
 
--- -------------------------------------------------------------------------
--- Keep updated_at current on projects
--- -------------------------------------------------------------------------
 create or replace function set_updated_at()
 returns trigger as $$
 begin
@@ -64,14 +50,10 @@ create trigger trg_projects_updated_at
   before update on projects
   for each row execute function set_updated_at();
 
--- -------------------------------------------------------------------------
--- Row Level Security
--- -------------------------------------------------------------------------
 alter table projects        enable row level security;
 alter table project_images  enable row level security;
 alter table messages        enable row level security;
 
--- Public (anon) visitors mayREAD published projects and their images.
 drop policy if exists "Public can read published projects" on projects;
 create policy "Public can read published projects"
   on projects for select
@@ -90,15 +72,12 @@ create policy "Public can read images of published projects"
     )
   );
 
--- Public (anon) visitors may INSERT a contact message, but never read/edit
--- any message (that would leak everyone else's contact details).
 drop policy if exists "Public can submit a message" on messages;
 create policy "Public can submit a message"
   on messages for insert
   to anon
   with check (true);
 
--- Logged-in admins get full read/write access to everything.
 drop policy if exists "Admins manage projects" on projects;
 create policy "Admins manage projects"
   on projects for all
@@ -120,21 +99,16 @@ create policy "Admins manage messages"
   using (true)
   with check (true);
 
--- -------------------------------------------------------------------------
--- Storage bucket for uploaded project photos
--- -------------------------------------------------------------------------
 insert into storage.buckets (id, name, public)
 values ('project-images', 'project-images', true)
 on conflict (id) do nothing;
 
--- Anyone can view files in the (public) bucket.
 drop policy if exists "Public can view project images" on storage.objects;
 create policy "Public can view project images"
   on storage.objects for select
   to public
   using (bucket_id = 'project-images');
 
--- Only logged-in admins can upload/replace/delete files in that bucket.
 drop policy if exists "Admins can upload project images" on storage.objects;
 create policy "Admins can upload project images"
   on storage.objects for insert
@@ -153,11 +127,6 @@ create policy "Admins can delete project images"
   to authenticated
   using (bucket_id = 'project-images');
 
--- -------------------------------------------------------------------------
--- Seed data — mirrors what is currently hardcoded in src/data/projects.js,
--- so the site keeps working immediately after you switch it over.
--- Safe to delete afterwards from the Admin dashboard.
--- -------------------------------------------------------------------------
 insert into projects (slug, title, description, location, year, category, cover_image, featured, sort_order)
 values
   ('residential-house-tarlac',
