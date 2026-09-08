@@ -1,0 +1,189 @@
+.navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #e3e0d2;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  border-bottom: 0.1px solid black;
+}
+
+.navigation h1 {
+  font-family: 'Schoonheid', sans-serif;
+  font-size: clamp(24px, 5vw, 100px);
+  font-weight: 300;
+  letter-spacing: 8px;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.navigation h2 {
+  font-family: 'Schoonheid', sans-serif;
+  font-size: clamp(10px, 2vw, 16px);
+  letter-spacing: 6px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 179px;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #e3e0d2;
+  font-weight: 600;
+  flex-wrap: wrap;
+  text-decoration: none;
+  font-family: 'Avenir Mid', sans-serif;
+}
+
+.navList li {
+  cursor: pointer;
+  font-size: clamp(12px, 1.8vw, 16px);
+  font-family: 'Schoonheid', sans-serif;
+}
+
+.navList a {
+  text-decoration: none;
+  color: #000;
+  position: relative;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.navList a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.navList a:hover::after,
+.navList a:active::after {
+  width: 100%;
+}
+
+.navigation hr {
+  border: 0.5px solid #000;
+  width: 100%;
+  margin: 10px auto;
+}
+
+.social {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  top: 90px;
+  left: 10%;
+}
+
+.social img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  filter: invert(40%) sepia(10%) saturate(200%) hue-rotate(340deg) brightness(50%) contrast(85%);
+}
+
+.social img:hover {
+  opacity: 0.7;
+}
+
+/* Gallery page uses a slightly different nav type scale in the original site */
+.galleryVariant {
+  padding-bottom: 0;
+}
+
+.galleryVariant .navList {
+  padding: 6px 0;
+  font-family: 'Schoonheid', sans-serif;
+}
+
+.galleryVariant .navList li {
+  font-size: 1rem;
+}
+
+.galleryVariant h2 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin-bottom: 27.5px;
+  position: relative;
+  top: -3px;
+}
+
+@media screen and (max-width: 1250px) {
+  .galleryVariant .navList {
+    gap: 80px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .navigation {
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .navList {
+    gap: 30px;
+    padding: 15px 0;
+  }
+
+  .navigation h1,
+  .navigation h2 {
+    top: 0;
+    margin-top: 10px;
+  }
+
+  .social {
+    position: static;
+    top: auto;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .navigation {
+    height: auto;
+    padding-bottom: 10px;
+  }
+
+  .navList {
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 15px 0;
+    font-size: 12px;
+  }
+
+  .navigation h1 {
+    font-size: 32px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    line-height: 1.1;
+  }
+
+  .navigation h2 {
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+  }
+
+  .social {
+    display: none;
+  }
+}
