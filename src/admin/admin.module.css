@@ -385,3 +385,28 @@
   background: #1c1b19;
   color: #fff;
 }
+
+.filterPillStar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.filterPillStar.filterPillActive svg {
+  fill: #d9a441;
+  stroke: #d9a441;
+}
+
+.starButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.15rem;
+  line-height: 0;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.starButton:hover svg {
+  stroke: #d9a441;
+}
