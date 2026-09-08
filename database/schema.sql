@@ -1,7 +1,3 @@
--- =========================================================================
--- AM Interior — Supabase database schema
--- Run this whole file once in: Supabase Dashboard -> SQL Editor -> New query
--- =========================================================================
 
 -- Needed for gen_random_uuid()
 create extension if not exists "pgcrypto";
@@ -75,7 +71,7 @@ alter table projects        enable row level security;
 alter table project_images  enable row level security;
 alter table messages        enable row level security;
 
--- Public (anon) visitors may READ published projects and their images.
+-- Public (anon) visitors mayREAD published projects and their images.
 drop policy if exists "Public can read published projects" on projects;
 create policy "Public can read published projects"
   on projects for select
@@ -102,8 +98,7 @@ create policy "Public can submit a message"
   to anon
   with check (true);
 
--- Logged-in admins (any authenticated user, since this is a single-owner
--- site) get full read/write access to everything.
+-- Logged-in admins get full read/write access to everything.
 drop policy if exists "Admins manage projects" on projects;
 create policy "Admins manage projects"
   on projects for all
